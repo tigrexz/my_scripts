@@ -1,5 +1,5 @@
 import re
-filename = 'keywords-1.txt'
+filename = 'keywords.txt'
 
 reg1 = re.compile(r'(\w+\s?\w+)[\n\r,:\.]*')    # works for text with one line or mutiple lines
 
