@@ -16,7 +16,6 @@ try:
     with open(filename) as file:
         keywords = file.read()
 
-
     mo1 = reg1.findall(keywords)
     print('\n')
     print("the keywords need to be processed are:\n\n",keywords)
@@ -24,6 +23,7 @@ try:
     str = ''
     for i in mo1:
         str += f'\"{i}\" OR '
+        
     #print(str)
     print("\nThe processed keywords are:\n\n",str.rstrip(' OR'))
     print('\n')
