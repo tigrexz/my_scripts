@@ -8,23 +8,23 @@ parser.add_argument('-f', '--filename', dest='f', type=str, required=True, help=
 # parse arguments
 args = parser.parse_args()
 
-
+# create file object
 filename = str(args.f)
+#create regex object
 reg1 = re.compile(r'(\w+\s?\w+)[\n\r,:\.]*')    # works for text with one line or mutiple lines
 
 try:
     with open(filename) as file:
         keywords = file.read()
-
+#create match object
     mo1 = reg1.findall(keywords)
-    print('\n')
-    print("the keywords need to be processed are:\n\n",keywords)
 
     str = ''
     for i in mo1:
         str += f'\"{i}\" OR '
         
-    #print(str)
+    print('\n')
+    print("the keywords need to be processed are:\n\n",keywords) 
     print("\nThe processed keywords are:\n\n",str.rstrip(' OR'))
     print('\n')
 except FileNotFoundError:
