@@ -12,7 +12,7 @@ args = parser.parse_args()
 # create file object
 filename = str(args.f)
 #create regex object
-reg1 = re.compile(r'(\w+\s?\w+)[\n\r,:\.]*')    # works for text with one line or mutiple lines
+reg1 = re.compile(r'(\w+[^\S\r\n]?\w+)[\n\r,:\.]*')    # works for text with one line or mutiple lines
 
 try:
     with open(filename) as file:
