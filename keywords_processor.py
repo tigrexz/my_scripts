@@ -25,8 +25,8 @@ try:
         str += f'\"{i}\" OR '
         
     print('\n')
-    print("the keywords need to be processed are:\n\n",keywords) 
+    print("The keywords that need to be processed are:\n\n",keywords) 
     print("\nThe processed keywords are:\n\n",str.rstrip(' OR'))
     print('\n')
 except FileNotFoundError:
-    print(f"Sorry, the file {filename} does not exit!")
+    print(f"Sorry, {filename} does not exist!")
