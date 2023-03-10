@@ -22,17 +22,17 @@ def main():
         # create match object
         mo1 = reg1.findall(keywords)
 
-        str = ''
+        str1 = ''
         for i in mo1:
             str += f'\"{i}\" OR '
 
         print('\n')
         print("The keywords that need to be processed are:\n\n", keywords)
-        print("\nThe processed keywords are:\n\n", str.rstrip(' OR'))
+        print("\nThe processed keywords are:\n\n", str1.rstrip(' OR'))
         print('\n')
     except FileNotFoundError:
         print(f"Sorry, {filename} does not exist!")
-        
-        
+
+
 if __name__ == "__main__":
     main()
