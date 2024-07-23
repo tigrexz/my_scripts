@@ -8,7 +8,7 @@ from selenium.webdriver.chrome.options import Options
 def get_cookies(url):
     test_url = url
 
-    # 启动 Chrome 浏览器
+# Create a Chrome webdriver with options for ant-bot detection 
     options = Options()
     options.add_argument("start-maximized")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
@@ -17,22 +17,18 @@ def get_cookies(url):
     options.add_argument('--disable-blink-features=AutomationControlled')
     driver = webdriver.Chrome(options=options)
 
-    # 访问目标网站
+# Access target webpage
     driver.get(test_url)
-
-    # 获取浏览器中的所有 cookies
+# Save cookies from the webpage
     cookies = driver.get_cookies()
     return cookies
 
 def get_magnet_links(url):
     headers = {
         'User-Agent': "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0.0.0 Safari/537.36"
-  #      ,'Cookie': cookie
     }
-    # 创建一个 requests 的 Session 对象
     session = requests.Session()
 
-    # 将 Selenium 获取的 cookies 添加到 requests 的 Session 中
     for cookie in cookies:
         session.cookies.set(cookie['name'], cookie['value'])
 
@@ -47,4 +43,18 @@ def get_magnet_links(url):
 
         return magnet_links
     except Exception as e:
+        print(f"Error fetching magnet links: {e}")
+        return []
+
+if __name__ == "__main__":
+    target_url = input("Please paste the btdx link here:")
+    cookies=get_cookies(target_url)
+
+    mp4_magnet_links = get_magnet_links(target_url)
+
+    if mp4_magnet_links:
+        for link in mp4_magnet_links:
+            print(link)
+    else:
+        print("No MP4 magnet links found on the page.")
         
